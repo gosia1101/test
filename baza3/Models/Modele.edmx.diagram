@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7db67bd323954fb6a0c6276d6ede7c91" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.AUTHORS" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.BOOK_COPIES" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.BOOK_RENTALS" Width="1.5" PointX="7.5" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.BOOKS" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CATEGORIES" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.EMPLOYEES" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PENALTIES" Width="1.5" PointX="7.5" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PUBLISHERS" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TAGS" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TB_TEST_1" Width="1.5" PointX="7.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.USERS" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.USER_FAVORITES" Width="1.5" PointX="7.5" PointY="12.875" IsExpanded="true" />
+        <AssociationConnector Association="Model.BOOK_COPIES_BOOKS_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.BOOK_RENTALS_BOOK_COPIES_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.BOOK_RENTALS_EMPLOYEES_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.BOOK_RENTALS_USERS_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.BOOKS_CATEGORIES_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.BOOKS_PUBLISHERS_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.PENALTIES_USERS_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.USER_FAVORITES_USERS_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.BOOK_AUTHORS" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.BOOK_TAGS" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

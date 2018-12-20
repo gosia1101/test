@@ -1,0 +1,791 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AUTHORS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="FIRSTNAME" Type="varchar2" MaxLength="20" />
+          <Property Name="LASTNAME" Type="varchar2" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="BOOK_AUTHORS">
+          <Key>
+            <PropertyRef Name="BOOKS_ID" />
+            <PropertyRef Name="AUTHORS_ID" />
+          </Key>
+          <Property Name="BOOKS_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AUTHORS_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BOOK_COPIES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="BOOKS_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BOOK_RENTALS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DATE_OF_RENTAL" Type="date" />
+          <Property Name="DATE_OF_RETURN" Type="date" />
+          <Property Name="USERS_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="EMPLOYEES_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="BOOK_COPIES_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BOOK_TAGS">
+          <Key>
+            <PropertyRef Name="BOOKS_ID" />
+            <PropertyRef Name="TAGS_ID" />
+          </Key>
+          <Property Name="BOOKS_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TAGS_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BOOKS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TITLE" Type="varchar2" MaxLength="40" />
+          <Property Name="ISBN" Type="number" Precision="38" Scale="0" />
+          <Property Name="CATEGORIES_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PUBLISHERS_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATEGORIES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TITLE" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EMPLOYEES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="IS_ADMIN" Type="char" MaxLength="1" />
+          <Property Name="NAME" Type="varchar2" MaxLength="30" />
+          <Property Name="LASTNAME" Type="varchar2" MaxLength="50" />
+          <Property Name="LOGIN" Type="varchar2" MaxLength="15" />
+          <Property Name="PASSWORD" Type="varchar2" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="PENALTIES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AMOUNT" Type="number" Precision="38" Scale="0" />
+          <Property Name="STATUS" Type="varchar2" MaxLength="20" />
+          <Property Name="USERS_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PUBLISHERS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="30" />
+          <Property Name="ADREESS" Type="varchar2" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TAGS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TITLE" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TB_TEST_1">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="DATA" Type="varchar2" MaxLength="150" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SBD_NST_PS2_8.USER_FAVORITES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="USER_FAVORITES">
+          <Key>
+            <PropertyRef Name="USERS_ID" />
+          </Key>
+          <Property Name="BOOK_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="USERS_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="LOGIN" Type="varchar2" MaxLength="15" />
+          <Property Name="PASSWORD" Type="varchar2" MaxLength="15" />
+          <Property Name="EMAIL" Type="varchar2" MaxLength="20" />
+          <Property Name="NAME" Type="varchar2" MaxLength="40" />
+          <Property Name="LASTNAME" Type="varchar2" MaxLength="20" />
+          <Property Name="BIRTH_DATE" Type="date" />
+        </EntityType>
+        <Association Name="BOOK_AUTHORS_AUTHORS_FK">
+          <End Role="AUTHORS" Type="Self.AUTHORS" Multiplicity="1" />
+          <End Role="BOOK_AUTHORS" Type="Self.BOOK_AUTHORS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AUTHORS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOK_AUTHORS">
+              <PropertyRef Name="AUTHORS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOK_AUTHORS_BOOKS_FK">
+          <End Role="BOOKS" Type="Self.BOOKS" Multiplicity="1" />
+          <End Role="BOOK_AUTHORS" Type="Self.BOOK_AUTHORS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOOKS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOK_AUTHORS">
+              <PropertyRef Name="BOOKS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOK_COPIES_BOOKS_FK">
+          <End Role="BOOKS" Type="Self.BOOKS" Multiplicity="1" />
+          <End Role="BOOK_COPIES" Type="Self.BOOK_COPIES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOOKS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOK_COPIES">
+              <PropertyRef Name="BOOKS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOK_RENTALS_BOOK_COPIES_FK">
+          <End Role="BOOK_COPIES" Type="Self.BOOK_COPIES" Multiplicity="1" />
+          <End Role="BOOK_RENTALS" Type="Self.BOOK_RENTALS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOOK_COPIES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOK_RENTALS">
+              <PropertyRef Name="BOOK_COPIES_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOK_RENTALS_EMPLOYEES_FK">
+          <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="1" />
+          <End Role="BOOK_RENTALS" Type="Self.BOOK_RENTALS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOK_RENTALS">
+              <PropertyRef Name="EMPLOYEES_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOK_RENTALS_USERS_FK">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="BOOK_RENTALS" Type="Self.BOOK_RENTALS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOK_RENTALS">
+              <PropertyRef Name="USERS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOK_TAGS_BOOKS_FK">
+          <End Role="BOOKS" Type="Self.BOOKS" Multiplicity="1" />
+          <End Role="BOOK_TAGS" Type="Self.BOOK_TAGS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOOKS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOK_TAGS">
+              <PropertyRef Name="BOOKS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOK_TAGS_TAGS_FK">
+          <End Role="TAGS" Type="Self.TAGS" Multiplicity="1" />
+          <End Role="BOOK_TAGS" Type="Self.BOOK_TAGS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAGS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOK_TAGS">
+              <PropertyRef Name="TAGS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOKS_CATEGORIES_FK">
+          <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="1" />
+          <End Role="BOOKS" Type="Self.BOOKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOKS">
+              <PropertyRef Name="CATEGORIES_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOKS_PUBLISHERS_FK">
+          <End Role="PUBLISHERS" Type="Self.PUBLISHERS" Multiplicity="1" />
+          <End Role="BOOKS" Type="Self.BOOKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PUBLISHERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOKS">
+              <PropertyRef Name="PUBLISHERS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PENALTIES_USERS_FK">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="PENALTIES" Type="Self.PENALTIES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PENALTIES">
+              <PropertyRef Name="USERS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USER_FAVORITES_USERS_FK">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="USER_FAVORITES" Type="Self.USER_FAVORITES" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER_FAVORITES">
+              <PropertyRef Name="USERS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="AUTHORS" EntityType="Self.AUTHORS" Schema="SBD_NST_PS2_8" store:Type="Tables" />
+          <EntitySet Name="BOOK_AUTHORS" EntityType="Self.BOOK_AUTHORS" Schema="SBD_NST_PS2_8" store:Type="Tables" />
+          <EntitySet Name="BOOK_COPIES" EntityType="Self.BOOK_COPIES" Schema="SBD_NST_PS2_8" store:Type="Tables" />
+          <EntitySet Name="BOOK_RENTALS" EntityType="Self.BOOK_RENTALS" Schema="SBD_NST_PS2_8" store:Type="Tables" />
+          <EntitySet Name="BOOK_TAGS" EntityType="Self.BOOK_TAGS" Schema="SBD_NST_PS2_8" store:Type="Tables" />
+          <EntitySet Name="BOOKS" EntityType="Self.BOOKS" Schema="SBD_NST_PS2_8" store:Type="Tables" />
+          <EntitySet Name="CATEGORIES" EntityType="Self.CATEGORIES" Schema="SBD_NST_PS2_8" store:Type="Tables" />
+          <EntitySet Name="EMPLOYEES" EntityType="Self.EMPLOYEES" Schema="SBD_NST_PS2_8" store:Type="Tables" />
+          <EntitySet Name="PENALTIES" EntityType="Self.PENALTIES" Schema="SBD_NST_PS2_8" store:Type="Tables" />
+          <EntitySet Name="PUBLISHERS" EntityType="Self.PUBLISHERS" Schema="SBD_NST_PS2_8" store:Type="Tables" />
+          <EntitySet Name="TAGS" EntityType="Self.TAGS" Schema="SBD_NST_PS2_8" store:Type="Tables" />
+          <EntitySet Name="TB_TEST_1" EntityType="Self.TB_TEST_1" Schema="SBD_NST_PS2_8" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="SBD_NST_PS2_8" store:Type="Tables" />
+          <EntitySet Name="USER_FAVORITES" EntityType="Self.USER_FAVORITES" store:Type="Tables" store:Schema="SBD_NST_PS2_8">
+            <DefiningQuery>SELECT 
+"USER_FAVORITES"."BOOK_ID" AS "BOOK_ID", 
+"USER_FAVORITES"."USERS_ID" AS "USERS_ID"
+FROM "SBD_NST_PS2_8"."USER_FAVORITES" "USER_FAVORITES"</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="BOOK_AUTHORS_AUTHORS_FK" Association="Self.BOOK_AUTHORS_AUTHORS_FK">
+            <End Role="AUTHORS" EntitySet="AUTHORS" />
+            <End Role="BOOK_AUTHORS" EntitySet="BOOK_AUTHORS" />
+          </AssociationSet>
+          <AssociationSet Name="BOOK_AUTHORS_BOOKS_FK" Association="Self.BOOK_AUTHORS_BOOKS_FK">
+            <End Role="BOOKS" EntitySet="BOOKS" />
+            <End Role="BOOK_AUTHORS" EntitySet="BOOK_AUTHORS" />
+          </AssociationSet>
+          <AssociationSet Name="BOOK_COPIES_BOOKS_FK" Association="Self.BOOK_COPIES_BOOKS_FK">
+            <End Role="BOOKS" EntitySet="BOOKS" />
+            <End Role="BOOK_COPIES" EntitySet="BOOK_COPIES" />
+          </AssociationSet>
+          <AssociationSet Name="BOOK_RENTALS_BOOK_COPIES_FK" Association="Self.BOOK_RENTALS_BOOK_COPIES_FK">
+            <End Role="BOOK_COPIES" EntitySet="BOOK_COPIES" />
+            <End Role="BOOK_RENTALS" EntitySet="BOOK_RENTALS" />
+          </AssociationSet>
+          <AssociationSet Name="BOOK_RENTALS_EMPLOYEES_FK" Association="Self.BOOK_RENTALS_EMPLOYEES_FK">
+            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+            <End Role="BOOK_RENTALS" EntitySet="BOOK_RENTALS" />
+          </AssociationSet>
+          <AssociationSet Name="BOOK_RENTALS_USERS_FK" Association="Self.BOOK_RENTALS_USERS_FK">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="BOOK_RENTALS" EntitySet="BOOK_RENTALS" />
+          </AssociationSet>
+          <AssociationSet Name="BOOK_TAGS_BOOKS_FK" Association="Self.BOOK_TAGS_BOOKS_FK">
+            <End Role="BOOKS" EntitySet="BOOKS" />
+            <End Role="BOOK_TAGS" EntitySet="BOOK_TAGS" />
+          </AssociationSet>
+          <AssociationSet Name="BOOK_TAGS_TAGS_FK" Association="Self.BOOK_TAGS_TAGS_FK">
+            <End Role="TAGS" EntitySet="TAGS" />
+            <End Role="BOOK_TAGS" EntitySet="BOOK_TAGS" />
+          </AssociationSet>
+          <AssociationSet Name="BOOKS_CATEGORIES_FK" Association="Self.BOOKS_CATEGORIES_FK">
+            <End Role="CATEGORIES" EntitySet="CATEGORIES" />
+            <End Role="BOOKS" EntitySet="BOOKS" />
+          </AssociationSet>
+          <AssociationSet Name="BOOKS_PUBLISHERS_FK" Association="Self.BOOKS_PUBLISHERS_FK">
+            <End Role="PUBLISHERS" EntitySet="PUBLISHERS" />
+            <End Role="BOOKS" EntitySet="BOOKS" />
+          </AssociationSet>
+          <AssociationSet Name="PENALTIES_USERS_FK" Association="Self.PENALTIES_USERS_FK">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="PENALTIES" EntitySet="PENALTIES" />
+          </AssociationSet>
+          <AssociationSet Name="USER_FAVORITES_USERS_FK" Association="Self.USER_FAVORITES_USERS_FK">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="USER_FAVORITES" EntitySet="USER_FAVORITES" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AUTHORS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LASTNAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BOOKS" Relationship="Self.BOOK_AUTHORS" FromRole="AUTHORS" ToRole="BOOKS" />
+        </EntityType>
+        <EntityType Name="BOOK_COPIES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="BOOKS_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="BOOKS" Relationship="Self.BOOK_COPIES_BOOKS_FK" FromRole="BOOK_COPIES" ToRole="BOOKS" />
+          <NavigationProperty Name="BOOK_RENTALS" Relationship="Self.BOOK_RENTALS_BOOK_COPIES_FK" FromRole="BOOK_COPIES" ToRole="BOOK_RENTALS" />
+        </EntityType>
+        <EntityType Name="BOOK_RENTALS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DATE_OF_RENTAL" Type="DateTime" />
+          <Property Name="DATE_OF_RETURN" Type="DateTime" />
+          <Property Name="USERS_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="EMPLOYEES_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="BOOK_COPIES_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="BOOK_COPIES" Relationship="Self.BOOK_RENTALS_BOOK_COPIES_FK" FromRole="BOOK_RENTALS" ToRole="BOOK_COPIES" />
+          <NavigationProperty Name="EMPLOYEES" Relationship="Self.BOOK_RENTALS_EMPLOYEES_FK" FromRole="BOOK_RENTALS" ToRole="EMPLOYEES" />
+          <NavigationProperty Name="USERS" Relationship="Self.BOOK_RENTALS_USERS_FK" FromRole="BOOK_RENTALS" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="BOOKS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TITLE" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="ISBN" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="CATEGORIES_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PUBLISHERS_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="BOOK_COPIES" Relationship="Self.BOOK_COPIES_BOOKS_FK" FromRole="BOOKS" ToRole="BOOK_COPIES" />
+          <NavigationProperty Name="CATEGORIES" Relationship="Self.BOOKS_CATEGORIES_FK" FromRole="BOOKS" ToRole="CATEGORIES" />
+          <NavigationProperty Name="PUBLISHERS" Relationship="Self.BOOKS_PUBLISHERS_FK" FromRole="BOOKS" ToRole="PUBLISHERS" />
+          <NavigationProperty Name="AUTHORS" Relationship="Self.BOOK_AUTHORS" FromRole="BOOKS" ToRole="AUTHORS" />
+          <NavigationProperty Name="TAGS" Relationship="Self.BOOK_TAGS" FromRole="BOOKS" ToRole="TAGS" />
+        </EntityType>
+        <EntityType Name="CATEGORIES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TITLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BOOKS" Relationship="Self.BOOKS_CATEGORIES_FK" FromRole="CATEGORIES" ToRole="BOOKS" />
+        </EntityType>
+        <EntityType Name="EMPLOYEES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="IS_ADMIN" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="LASTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LOGIN" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BOOK_RENTALS" Relationship="Self.BOOK_RENTALS_EMPLOYEES_FK" FromRole="EMPLOYEES" ToRole="BOOK_RENTALS" />
+        </EntityType>
+        <EntityType Name="PENALTIES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AMOUNT" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="STATUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="USERS_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="USERS" Relationship="Self.PENALTIES_USERS_FK" FromRole="PENALTIES" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="PUBLISHERS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ADREESS" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BOOKS" Relationship="Self.BOOKS_PUBLISHERS_FK" FromRole="PUBLISHERS" ToRole="BOOKS" />
+        </EntityType>
+        <EntityType Name="TAGS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TITLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BOOKS" Relationship="Self.BOOK_TAGS" FromRole="TAGS" ToRole="BOOKS" />
+        </EntityType>
+        <EntityType Name="TB_TEST_1">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="DATA" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="LOGIN" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NAME" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="LASTNAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BIRTH_DATE" Type="DateTime" />
+          <NavigationProperty Name="BOOK_RENTALS" Relationship="Self.BOOK_RENTALS_USERS_FK" FromRole="USERS" ToRole="BOOK_RENTALS" />
+          <NavigationProperty Name="PENALTIES" Relationship="Self.PENALTIES_USERS_FK" FromRole="USERS" ToRole="PENALTIES" />
+          <NavigationProperty Name="USER_FAVORITES" Relationship="Self.USER_FAVORITES_USERS_FK" FromRole="USERS" ToRole="USER_FAVORITES" />
+        </EntityType>
+        <EntityType Name="USER_FAVORITES">
+          <Key>
+            <PropertyRef Name="USERS_ID" />
+          </Key>
+          <Property Name="BOOK_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="USERS_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="USERS" Relationship="Self.USER_FAVORITES_USERS_FK" FromRole="USER_FAVORITES" ToRole="USERS" />
+        </EntityType>
+        <Association Name="BOOK_COPIES_BOOKS_FK">
+          <End Role="BOOKS" Type="Self.BOOKS" Multiplicity="1" />
+          <End Role="BOOK_COPIES" Type="Self.BOOK_COPIES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOOKS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOK_COPIES">
+              <PropertyRef Name="BOOKS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOK_RENTALS_BOOK_COPIES_FK">
+          <End Role="BOOK_COPIES" Type="Self.BOOK_COPIES" Multiplicity="1" />
+          <End Role="BOOK_RENTALS" Type="Self.BOOK_RENTALS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOOK_COPIES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOK_RENTALS">
+              <PropertyRef Name="BOOK_COPIES_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOK_RENTALS_EMPLOYEES_FK">
+          <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="1" />
+          <End Role="BOOK_RENTALS" Type="Self.BOOK_RENTALS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOK_RENTALS">
+              <PropertyRef Name="EMPLOYEES_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOK_RENTALS_USERS_FK">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="BOOK_RENTALS" Type="Self.BOOK_RENTALS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOK_RENTALS">
+              <PropertyRef Name="USERS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOKS_CATEGORIES_FK">
+          <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="1" />
+          <End Role="BOOKS" Type="Self.BOOKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOKS">
+              <PropertyRef Name="CATEGORIES_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOKS_PUBLISHERS_FK">
+          <End Role="PUBLISHERS" Type="Self.PUBLISHERS" Multiplicity="1" />
+          <End Role="BOOKS" Type="Self.BOOKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PUBLISHERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOKS">
+              <PropertyRef Name="PUBLISHERS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PENALTIES_USERS_FK">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="PENALTIES" Type="Self.PENALTIES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PENALTIES">
+              <PropertyRef Name="USERS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USER_FAVORITES_USERS_FK">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="USER_FAVORITES" Type="Self.USER_FAVORITES" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER_FAVORITES">
+              <PropertyRef Name="USERS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOK_AUTHORS">
+          <End Role="AUTHORS" Type="Self.AUTHORS" Multiplicity="*" />
+          <End Role="BOOKS" Type="Self.BOOKS" Multiplicity="*" />
+        </Association>
+        <Association Name="BOOK_TAGS">
+          <End Role="BOOKS" Type="Self.BOOKS" Multiplicity="*" />
+          <End Role="TAGS" Type="Self.TAGS" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AUTHORS" EntityType="Self.AUTHORS" />
+          <EntitySet Name="BOOK_COPIES" EntityType="Self.BOOK_COPIES" />
+          <EntitySet Name="BOOK_RENTALS" EntityType="Self.BOOK_RENTALS" />
+          <EntitySet Name="BOOKS" EntityType="Self.BOOKS" />
+          <EntitySet Name="CATEGORIES" EntityType="Self.CATEGORIES" />
+          <EntitySet Name="EMPLOYEES" EntityType="Self.EMPLOYEES" />
+          <EntitySet Name="PENALTIES" EntityType="Self.PENALTIES" />
+          <EntitySet Name="PUBLISHERS" EntityType="Self.PUBLISHERS" />
+          <EntitySet Name="TAGS" EntityType="Self.TAGS" />
+          <EntitySet Name="TB_TEST_1" EntityType="Self.TB_TEST_1" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" />
+          <EntitySet Name="USER_FAVORITES" EntityType="Self.USER_FAVORITES" />
+          <AssociationSet Name="BOOK_COPIES_BOOKS_FK" Association="Self.BOOK_COPIES_BOOKS_FK">
+            <End Role="BOOKS" EntitySet="BOOKS" />
+            <End Role="BOOK_COPIES" EntitySet="BOOK_COPIES" />
+          </AssociationSet>
+          <AssociationSet Name="BOOK_RENTALS_BOOK_COPIES_FK" Association="Self.BOOK_RENTALS_BOOK_COPIES_FK">
+            <End Role="BOOK_COPIES" EntitySet="BOOK_COPIES" />
+            <End Role="BOOK_RENTALS" EntitySet="BOOK_RENTALS" />
+          </AssociationSet>
+          <AssociationSet Name="BOOK_RENTALS_EMPLOYEES_FK" Association="Self.BOOK_RENTALS_EMPLOYEES_FK">
+            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+            <End Role="BOOK_RENTALS" EntitySet="BOOK_RENTALS" />
+          </AssociationSet>
+          <AssociationSet Name="BOOK_RENTALS_USERS_FK" Association="Self.BOOK_RENTALS_USERS_FK">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="BOOK_RENTALS" EntitySet="BOOK_RENTALS" />
+          </AssociationSet>
+          <AssociationSet Name="BOOKS_CATEGORIES_FK" Association="Self.BOOKS_CATEGORIES_FK">
+            <End Role="CATEGORIES" EntitySet="CATEGORIES" />
+            <End Role="BOOKS" EntitySet="BOOKS" />
+          </AssociationSet>
+          <AssociationSet Name="BOOKS_PUBLISHERS_FK" Association="Self.BOOKS_PUBLISHERS_FK">
+            <End Role="PUBLISHERS" EntitySet="PUBLISHERS" />
+            <End Role="BOOKS" EntitySet="BOOKS" />
+          </AssociationSet>
+          <AssociationSet Name="PENALTIES_USERS_FK" Association="Self.PENALTIES_USERS_FK">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="PENALTIES" EntitySet="PENALTIES" />
+          </AssociationSet>
+          <AssociationSet Name="USER_FAVORITES_USERS_FK" Association="Self.USER_FAVORITES_USERS_FK">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="USER_FAVORITES" EntitySet="USER_FAVORITES" />
+          </AssociationSet>
+          <AssociationSet Name="BOOK_AUTHORS" Association="Self.BOOK_AUTHORS">
+            <End Role="AUTHORS" EntitySet="AUTHORS" />
+            <End Role="BOOKS" EntitySet="BOOKS" />
+          </AssociationSet>
+          <AssociationSet Name="BOOK_TAGS" Association="Self.BOOK_TAGS">
+            <End Role="BOOKS" EntitySet="BOOKS" />
+            <End Role="TAGS" EntitySet="TAGS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="AUTHORS">
+            <EntityTypeMapping TypeName="Model.AUTHORS">
+              <MappingFragment StoreEntitySet="AUTHORS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BOOK_COPIES">
+            <EntityTypeMapping TypeName="Model.BOOK_COPIES">
+              <MappingFragment StoreEntitySet="BOOK_COPIES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BOOKS_ID" ColumnName="BOOKS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BOOK_RENTALS">
+            <EntityTypeMapping TypeName="Model.BOOK_RENTALS">
+              <MappingFragment StoreEntitySet="BOOK_RENTALS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DATE_OF_RENTAL" ColumnName="DATE_OF_RENTAL" />
+                <ScalarProperty Name="DATE_OF_RETURN" ColumnName="DATE_OF_RETURN" />
+                <ScalarProperty Name="USERS_ID" ColumnName="USERS_ID" />
+                <ScalarProperty Name="EMPLOYEES_ID" ColumnName="EMPLOYEES_ID" />
+                <ScalarProperty Name="BOOK_COPIES_ID" ColumnName="BOOK_COPIES_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BOOKS">
+            <EntityTypeMapping TypeName="Model.BOOKS">
+              <MappingFragment StoreEntitySet="BOOKS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="CATEGORIES_ID" ColumnName="CATEGORIES_ID" />
+                <ScalarProperty Name="PUBLISHERS_ID" ColumnName="PUBLISHERS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATEGORIES">
+            <EntityTypeMapping TypeName="Model.CATEGORIES">
+              <MappingFragment StoreEntitySet="CATEGORIES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEES">
+            <EntityTypeMapping TypeName="Model.EMPLOYEES">
+              <MappingFragment StoreEntitySet="EMPLOYEES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IS_ADMIN" ColumnName="IS_ADMIN" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+                <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PENALTIES">
+            <EntityTypeMapping TypeName="Model.PENALTIES">
+              <MappingFragment StoreEntitySet="PENALTIES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="USERS_ID" ColumnName="USERS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PUBLISHERS">
+            <EntityTypeMapping TypeName="Model.PUBLISHERS">
+              <MappingFragment StoreEntitySet="PUBLISHERS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ADREESS" ColumnName="ADREESS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAGS">
+            <EntityTypeMapping TypeName="Model.TAGS">
+              <MappingFragment StoreEntitySet="TAGS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_TEST_1">
+            <EntityTypeMapping TypeName="Model.TB_TEST_1">
+              <MappingFragment StoreEntitySet="TB_TEST_1">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DATA" ColumnName="DATA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="Model.USERS">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+                <ScalarProperty Name="BIRTH_DATE" ColumnName="BIRTH_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_FAVORITES">
+            <EntityTypeMapping TypeName="Model.USER_FAVORITES">
+              <MappingFragment StoreEntitySet="USER_FAVORITES">
+                <ScalarProperty Name="BOOK_ID" ColumnName="BOOK_ID" />
+                <ScalarProperty Name="USERS_ID" ColumnName="USERS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="BOOK_AUTHORS" TypeName="Model.BOOK_AUTHORS" StoreEntitySet="BOOK_AUTHORS">
+            <EndProperty Name="AUTHORS">
+              <ScalarProperty Name="ID" ColumnName="AUTHORS_ID" />
+            </EndProperty>
+            <EndProperty Name="BOOKS">
+              <ScalarProperty Name="ID" ColumnName="BOOKS_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="BOOK_TAGS" TypeName="Model.BOOK_TAGS" StoreEntitySet="BOOK_TAGS">
+            <EndProperty Name="BOOKS">
+              <ScalarProperty Name="ID" ColumnName="BOOKS_ID" />
+            </EndProperty>
+            <EndProperty Name="TAGS">
+              <ScalarProperty Name="ID" ColumnName="TAGS_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
